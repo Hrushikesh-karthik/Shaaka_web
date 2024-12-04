@@ -11,5 +11,3 @@ copy paste the sql file contents in mysql terminal as it is to exactly get the s
 now run the command - python app.py
 
 the project starts running
-
-give this readme file more better and professional
