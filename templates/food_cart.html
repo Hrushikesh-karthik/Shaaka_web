@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Your Cart</h2>
+
+        {% if cart_items %}
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Image</th>
+                        <th>Food Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        <tr id="cart-item-{{ item.cart_id }}">
+                            <td><img src="{{ url_for('static', filename='uploads/' + item.image) }}" width="50"></td>
+                            <td>{{ item.food_name }}</td>
+                            <td>
+                                <div class="input-group">
+                                    <button class="btn btn-outline-secondary btn-sm update-quantity" 
+                                            data-id="{{ item.cart_id }}" 
+                                            data-action="decrement" 
+                                            data-price="{{ item.price }}">
+                                        -
+                                    </button>
+                                    <input type="text" class="form-control text-center" 
+                                           value="{{ item.quantity }}" readonly>
+                                    <button class="btn btn-outline-secondary btn-sm update-quantity" 
+                                            data-id="{{ item.cart_id }}" 
+                                            data-action="increment" 
+                                            data-price="{{ item.price }}">
+                                        +
+                                    </button>
+                                </div>
+                            </td>
+                            <td>₹{{ item.price }}</td>
+                            <td class="item-total">₹{{ item.total_price }}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm delete-item" data-id="{{ item.cart_id }}">Delete</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-right"><strong>Grand Total:</strong></td>
+                        <td id="grand-total">₹{{ total_amount }}</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <a href="/checkout" class="btn btn-success btn-block">Proceed to Checkout</a>
+        {% else %}
+            <div class="alert alert-warning text-center">
+                <strong>Your cart is empty!</strong> Add some delicious foods to enjoy.
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+       
+            // Update quantity
+            $('.update-quantity').click(function () {
+                const cartId = $(this).data('id');
+                const action = $(this).data('action');
+        
+                $.post('/update_cart_quantity', { cart_id: cartId, action: action }, function (response) {
+                    if (response.status === 'success') {
+                        // Refresh the page to reflect updated data
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                }).fail(function () {
+                    alert('Error updating quantity. Please try again.');
+                });
+            });
+        
+            // Delete item
+            $('.delete-item').click(function () {
+                const cartId = $(this).data('id');
+        
+                $.post('/delete_cart_item', { cart_id: cartId }, function (response) {
+                    if (response.status === 'success') {
+                        // Refresh the page to reflect updated data
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                }).fail(function () {
+                    alert('Error deleting item. Please try again.');
+                });
+            });
+        </script>
+        
+   
+</body>
+</html>

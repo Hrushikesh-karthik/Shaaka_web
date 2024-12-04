@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Register</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+  <!-- Favicons -->
+  <link href="{{ url_for('static', filename='shaaka.png') }}" rel="icon">
+  <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+<!-- Vendor CSS Files -->
+<link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+
+  <!-- Custom CSS -->
+  <!-- Main CSS File -->
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+  <style>
+    .section {
+        padding: 60px 0;
+    }
+    .form-section {
+        background: #f9f9f9;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .section-title h2 {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+        <a href="{{ url_for('home') }}" class="logo d-flex align-items-center">
+
+        <!-- <img src="assets/img/logo-2.png" alt=""> -->
+        <h1 style="color: rgb(41, 212, 70);" class="sitename">SHAAKA</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+            <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+    <section id="hero" class="hero section dark-background">
+
+      <img src="{{ url_for('static', filename='img/about.jpg') }}" class="hero-bg" alt="" data-aos="fade-in">
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <img src="" class="img-fluid mb-3" alt="">
+        <h2>"Agriculture is the most healthful, most useful and most noble employment of man."</h2><br> <h4>- George Washington</h4>
+       
+      </div>
+
+    </section>
+
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Harvesting happiness</h2>
+        <p>At Shaaka, we believe in empowering farmers to grow high-quality organic produce while ensuring sustainability and fair practices. By partnering with us, farmers can fulfill their responsibilities while receiving unparalleled support and resources. We are committed to providing all the necessary tools to help farmers cultivate the best crops and promote a healthy, sustainable future.</p>
+      </div>
+      <!-- End Section Title -->
+    
+      <div class="container">
+        <div class="row gy-4">
+    
+          <!-- Image Section -->
+          <div class="col-lg-6 order-1 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+
+            <img src="/static/img/farmimg.png" class="img-fluid rounded" alt="Organic Farming">
+
+          </div>
+    
+          <!-- Content Section -->
+          <div class="col-lg-6 order-2 order-lg-2 content" data-aos="fade-up" data-aos-delay="200">
+            <h3>Responsibilities of Farmers with Shaaka's Support</h3>
+            <p class="fst-italic">
+              At Shaaka, we empower farmers to grow organic crops using sustainable methods and provide them with the resources needed for success. Here’s how we support farmers in fulfilling their responsibilities:
+            </p>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> <span><strong>Cultivating Organic Crops with Shaaka's Resources</strong><br>
+                Farmers grow fruits and vegetables without synthetic chemicals, using eco-friendly fertilizers and pesticides crafted from neem leaves and organic waste.</span></li>
+              <li><i class="bi bi-check-circle"></i> <span><strong>Sustainable Farming Practices</strong><br>
+                Shaaka trains farmers to adopt sustainable farming techniques such as water-efficient irrigation and crop rotation, ensuring a healthy environment and soil fertility.</span></li>
+              <li><i class="bi bi-check-circle"></i> <span><strong>Ensuring Freshness and Quality</strong><br>
+                Farmers are responsible for harvesting crops at peak ripeness, maintaining hygiene, and ensuring quality standards during harvesting and packaging.</span></li>
+              <li><i class="bi bi-check-circle"></i> <span><strong>Collaboration with Shaaka’s Team</strong><br>
+                Farmers have regular communication with Shaaka’s agricultural experts to receive guidance on crop yield, pest management, and modern farming techniques.</span></li>
+              <li><i class="bi bi-check-circle"></i> <span><strong>Contributing to Fair Pricing for Customers and Farmers</strong><br>
+                Shaaka ensures market-friendly prices for both farmers and customers, eliminating intermediaries and creating a win-win situation.</span></li>
+              <li><i class="bi bi-check-circle"></i> <span><strong>Ensuring Subsidies for farmers</strong><br>
+                Shaaka encourages farmers to explore new crops and techniques, promoting biodiversity and sustainability in agriculture, along with subsidies covering losses.</span></li>
+              <li><i class="bi bi-check-circle"></i> <span><strong>Access to a Secure Marketplace</strong><br>
+                Farmers can sell their produce directly through Shaaka’s platform, bypassing middlemen and earning fair profits while customers receive fresh, affordable produce.</span></li>
+              <li><i class="bi bi-check-circle"></i> <span><strong>Building a Community of Change</strong><br>
+                Farmers join a network of like-minded individuals who are working towards a common goal of promoting organic farming and sustainable living. Share knowledge and learn from others to improve farming practices.</span></li>
+            </ul>
+            <!-- Image Section -->
+          
+            <a href="{{ url_for('register') }}" class="read-more"><span>Enroll as a farmer</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+    
+        </div>
+      </div>
+    
+    </section>    
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div class="address">
+            <h4>Address</h4>
+            <p>Malla Reddy College</p>
+            <p>Maisammaguda, Hyderabad</p>
+            <p></p>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Contact</h4>
+            <p>
+              <strong>Phone:</strong> <span>+91 123456789</span><br>
+              <strong>Email:</strong> <span>info@shaaka.com</span><br>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Working Hours</h4>
+            <p>
+              <strong>Mon-Fri:</strong> <span>11AM - 06PM</span><br>
+              <strong>Saturday, Sunday</strong>: <span>10AM - 05PM</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4>Follow Us</h4>
+          <div class="social-links d-flex">
+            <a href="https://x.com/?lang=en&mx=2" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.facebook.com/" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/accounts/login/" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/mynetwork/grow/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Shaaka</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+  
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- PHP Email Form Validation JS -->
+<script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+
+<!-- AOS Animation JS -->
+<script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+
+<!-- Typed.js JS -->
+<script src="{{ url_for('static', filename='vendor/typed.js/typed.umd.js') }}"></script>
+
+<!-- GLightbox JS -->
+<script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+
+<!-- Images Loaded JS -->
+<script src="{{ url_for('static', filename='vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+
+<!-- Isotope Layout JS -->
+<script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+
+<!-- Swiper JS -->
+<script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+
+<!-- Main JS File -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

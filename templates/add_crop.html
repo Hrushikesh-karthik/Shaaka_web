@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Crop</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Add Crop</h2>
+        <form action="{{ url_for('add_crop') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="crop_name">Crop Name:</label>
+                <input type="text" class="form-control" id="crop_name" name="crop_name" required>
+            </div>
+            <div class="form-group">
+                <label for="crop_type">Crop Type</label>
+                <select name="crop_type" id="crop_type" class="form-control" required>
+                    <option value="Vegetable">Vegetable</option>
+                    <option value="Fruit">Fruit</option>
+                    <option value="Food Grains">Food Grains</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity (Kg):</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" required>
+            </div>
+            <div class="form-group">
+                <label for="price_per_kg">Price per Kg (₹):</label>
+                <input type="number" class="form-control" id="price_per_kg" name="price_per_kg" required>
+            </div>
+            <div class="form-group">
+                <label for="offer">Offer (e.g., Bulk Discount):</label>
+                <input type="text" class="form-control" id="offer" name="offer">
+            </div>
+            <div class="form-group">
+                <label for="offer_details">Offer Details:</label>
+                <input type="text" class="form-control" id="offer_details" name="offer_details">
+            </div>
+            <div class="form-group">
+                <label for="image">Crop Image:</label>
+                <input type="file" class="form-control-file" id="image" name="image" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Add Crop</button>
+        </form>
+    </div>
+</body>
+</html>

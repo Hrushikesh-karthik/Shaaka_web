@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Login Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #21d0d6, #8ee7bb);
+        }
+
+        .session {
+            display: flex;
+            flex-direction: row;
+            max-width: 900px;
+            width: 100%;
+            height: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .left {
+    flex: 1;
+    background: url('static/img/loginimg.jpg') no-repeat center center;
+    background-size: cover; /* Ensures the image covers the entire area without distortion */
+    height: 100vh; /* Adjust height to match the viewport */
+    min-height: 300px; /* Optional: Ensures a minimum height for smaller screens */
+}
+
+
+        form {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        form h4 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .floating-label {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .floating-label input {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #1ee7b5;
+            border-radius: 4px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .floating-label input:focus {
+            border-color: #8bf8cb;
+            box-shadow: 0 0 5px rgba(147, 245, 212, 0.938);
+        }
+
+        .floating-label label {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: #999;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .floating-label input:focus + label,
+        .floating-label input:not(:placeholder-shown) + label {
+            top: 5px;
+            left: 10px;
+            font-size: 12px;
+            color: #078807;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #054b17;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #4cee54;
+        }
+
+        a.discrete {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #0c441a;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a.discrete:hover {
+            color: #39b175;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .session {
+                flex-direction: column;
+            }
+
+            .left {
+                height: 200px;
+            }
+
+            form {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            form h4 {
+                font-size: 24px;
+            }
+
+            form p {
+                font-size: 14px;
+            }
+
+            .floating-label input {
+                font-size: 14px;
+            }
+        }
+    </style>
+    <script src="/static/js/location.js"></script>
+
+</head>
+<body>
+    <div class="session">
+        <div class="left"></div>
+        <form action="/customer_register" class="log-in" autocomplete="off" method="POST">
+            <h4>Welcome to <span style="color: #07520a;">SHAAKA</span></h4>
+            <p>Sign Up to be healthy!!</p>
+
+            <div class="floating-label">
+                <input type="text" placeholder=" " id="name" name="name" autocomplete="off" required>
+                <label for="name">Name</label>
+            </div>
+            <div class="floating-label">
+                <input type="text" placeholder=" " id="email" name="email" autocomplete="off" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="floating-label">
+                <input type="tel" placeholder=" " id="phone" name="phone" autocomplete="off" required>
+                <label for="phone">Phone Number</label>
+            </div>
+            <div class="floating-label">
+                <input
+                    type="text"
+                    placeholder=" "
+                    id="location"
+                    name="location"
+                    autocomplete="off"
+                    list="location-suggestions"
+                    required
+                >
+                <label for="location">Locality</label>
+                <datalist id="location-suggestions"></datalist>
+            </div>
+            <div class="floating-label">
+                <input type="text" placeholder=" " id="state" name="state" readonly required>
+                <label for="state">State</label>
+            </div>
+            <div class="floating-label">
+                <input type="text" placeholder=" " id="address" name="address" autocomplete="off" required>
+                <label for="address">Home Address</label>
+            </div>
+            <div class="floating-label">
+                <input type="password" placeholder=" " id="password" name="password" autocomplete="off" required>
+                <label for="password">Password</label>
+            </div>
+            <button type="submit">Sign Up</button>
+            <a href="{{ url_for('customer_login') }}" class="discrete">Already have an account Login</a>
+        </form>
+    </div>
+</body>
+</html>

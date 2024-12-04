@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Market</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Farmer Market</a>
+        <div class="ml-auto">
+            <a href="/view_cart" class="btn btn-outline-primary position-relative">
+                Cart <i class="bi bi-cart"></i>
+                {% if cart_count > 0 %}
+                <span class="badge badge-danger position-absolute top-0 start-100 translate-middle">
+                    {{ cart_count }}
+                </span>
+                {% endif %}
+            </a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-4">Available Crops</h2>
+        <a href="/cooked_foods" class="btn btn-outline-success btn-lg">Order Cooked Food</a>
+    </div>
+    
+        <!-- Flash message for item added to cart -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert alert-success">
+                    {{ messages[0][1] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Filter Buttons -->
+        <div class="btn-group mb-4" role="group" aria-label="Filter Buttons">
+            <a href="{{ url_for('customer_dashboard', type='All') }}" class="btn btn-outline-primary {% if crop_type == 'All' %}active{% endif %}">All</a>
+            <a href="{{ url_for('customer_dashboard', type='Vegetable') }}" class="btn btn-outline-primary {% if crop_type == 'Vegetable' %}active{% endif %}">Vegetables</a>
+            <a href="{{ url_for('customer_dashboard', type='Fruit') }}" class="btn btn-outline-primary {% if crop_type == 'Fruit' %}active{% endif %}">Fruits</a>
+            <a href="{{ url_for('customer_dashboard', type='Food Grains') }}" class="btn btn-outline-primary {% if crop_type == 'Food Grains' %}active{% endif %}">Food Grains</a>
+        </div>
+        
+        <!-- Location Filter -->
+        <form method="GET" action="/customer_dashboard">
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <select class="form-select" name="location" onchange="this.form.submit()">
+                        <option value="">All Locations</option>
+                        {% for loc in locations %}
+                        <option value="{{ loc.id }}" {% if loc.id == selected_location %}selected{% endif %}>
+                            {{ loc.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </form>
+        
+        <!-- Display Crops -->
+        <div class="row">
+            {% for crop in crops %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/static/uploads/{{ crop.image }}" class="card-img-top" alt="{{ crop.crop_name }}" width="200" height="250">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ crop.crop_name }}</h5>
+                        <p class="card-text">
+                            <i class="bi bi-geo-alt"></i> {{ crop.location }}<br>
+                            <strong>₹{{ crop.price_per_kg }}/kg</strong><br>
+                            {% if crop.offer %}
+                            <span class="badge bg-success">Offer: {{ crop.offer_details }}</span>
+                            {% endif %}
+                        </p>
+                        <form action="/add_to_cart" method="POST">
+                            <input type="hidden" name="crop_id" value="{{ crop.id }}">
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Recipe Suggestions -->
+        <div id="recipe-suggestions" class="mt-5">
+            <h4>Recipe Suggestions</h4>
+            <div id="suggested-recipes" class="row">
+                <p class="text-muted">Add crops to the cart to see recipe suggestions.</p>
+            </div>
+        </div>
+        
+        <script>
+            function fetchRecipes() {
+                fetch('/get_recipes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const recipesContainer = document.getElementById('suggested-recipes');
+                    recipesContainer.innerHTML = ''; // Clear old suggestions
+        
+                    if (data.error) {
+                        recipesContainer.innerHTML = `<p class="text-danger">${data.error}</p>`;
+                        return;
+                    }
+        
+                    if (data.recipes.length === 0) {
+                        recipesContainer.innerHTML = '<p class="text-muted">No recipes match the items in your cart.</p>';
+                        return;
+                    }
+        
+                    // Display recipes
+                    data.recipes.forEach(recipe => {
+                        const recipeCard = `
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <img src="/static/uploads/${recipe.image}" class="card-img-top" alt="${recipe.recipe_name}" width="200" height="250">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${recipe.recipe_name}</h5>
+                                        <p class="card-text">Main Items: ${recipe.main_items}</p>
+                                        <button class="btn btn-primary" onclick="viewRecipe(${recipe.id})">View Recipe</button>
+                                        <form action="/add_recipe_to_cart" method="POST">
+                                            <input type="hidden" name="recipe_id" value="${recipe.id}">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn btn-primary">Buy Masala Combo</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>`;
+                        recipesContainer.innerHTML += recipeCard;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching recipes:', error);
+                });
+            }
+        
+            // Automatically fetch recipes on page load
+            document.addEventListener('DOMContentLoaded', fetchRecipes);
+        </script>
+        
+        <script>
+        function viewRecipe(recipeId) {
+            window.location.href = `/recipe/${recipeId}`;
+        }
+        </script>
+    </div>
+   
+</div>
+
+</body>
+</html>
