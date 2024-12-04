@@ -8,7 +8,7 @@ ensure all extensions gets installed well
 
 copy paste the sql file contents in mysql terminal as it is to exactly get the same setup
 
-now run the command python app.py
+now run the command - python app.py
 
 the project starts running
 
