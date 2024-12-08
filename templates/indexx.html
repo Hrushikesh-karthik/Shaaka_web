@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+    
+        body {
+          font-family: "Open Sans", sans-serif;
+          height: 100vh;
+          background: url("assets/img/farmerlogin.png") 50% fixed;
+          background-size: cover;
+        }
+    
+        .wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          padding: 20px;
+
+        }
+    
+        .login {
+          border-radius: 5px;
+          padding: 20px;
+          width: 100%;
+          max-width: 400px;
+          background: #ffffff;
+          position: relative;
+          box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+    
+        .login .form-group {
+          margin-bottom: 15px;
+          width: 100%;
+        }
+    
+        .login .form-group label {
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+    
+        .login .form-group input {
+          padding: 10px;
+          width: 100%;
+          border-radius: 5px;
+          border: 1px solid #ddd;
+          font-size: 14px;
+        }
+    
+        .login button {
+          width: 100%;
+          padding: 12px;
+          background-color: #085e1d;
+          color: #fff;
+          border: none;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background 0.3s;
+          position: relative;
+        }
+    
+        .login button:hover {
+          background-color: #19d247;
+        }
+    
+        .login .spinner {
+          display: block;
+          width: 40px;
+          height: 40px;
+          position: absolute;
+          border: 4px solid #ffffff;
+          border-top-color: rgba(255, 255, 255, 0.3);
+          border-radius: 100%;
+          left: 50%;
+          top: 50%;
+          opacity: 0;
+          margin-left: -20px;
+          margin-top: -20px;
+          animation: spinner 0.6s infinite linear;
+        }
+    
+        @keyframes spinner {
+          0% {
+            transform: rotateZ(0deg);
+          }
+          100% {
+            transform: rotateZ(359deg);
+          }
+        }
+    
+        .login input:focus {
+          outline: none;
+          border-color: #045224;
+        }
+    
+        .login input:focus + i {
+          opacity: 1;
+          left: 30px;
+        }
+    
+        .login.loading button {
+          padding-top: 50px;
+        }
+    
+        .login.loading button .spinner {
+          opacity: 1;
+          top: 40%;
+        }
+    
+        .login.ok button {
+          background-color: #8bc34a;
+        }
+    
+        .login.ok button .spinner {
+          animation: none;
+          transform: rotateZ(-45deg);
+        }
+    
+        .login .title {
+  color: #0a0909;
+  font-size: 1.2em;
+  font-weight: bold;
+
+  border-bottom: 1px solid #eee;
+
+}
+      </style>
+    </head>
+   
+    <script>
+      var working = false;
+      $(".login").on("submit", function (e) {
+        e.preventDefault();
+        if (working) return;
+        working = true;
+        var $this = $(this),
+          $state = $this.find("button > .state");
+        $this.addClass("loading");
+        $state.html("Authenticating");
+        setTimeout(function () {
+          $this.addClass("ok");
+          $state.html("Welcome back!");
+          setTimeout(function () {
+            $state.html("Log in");
+            $this.removeClass("ok loading");
+            working = false;
+          }, 4000);
+        }, 3000);
+      });
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="/register" id="aadhaar-authentication-form" data-aos="fade-up" data-aos-delay="100" method="POST" enctype="multipart/form-data" class="login">
+            <p class="title">Be a part of SHAAKA Family</p>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-control" required placeholder="Enter your Name">
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" class="form-control" required placeholder="Enter your Age">
+            </div>
+            <div class="form-group">
+                <label for="aadhaar-number">Aadhaar Number</label>
+                <input type="text" id="aadhar" name="aadhar" class="form-control" required placeholder="Enter your Aadhaar Number" maxlength="12" pattern="\d{12}">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" class="form-control" required placeholder="Enter your Phone Number" maxlength="10" pattern="\d{10}">
+            </div>
+            <div class="form-group position-relative">
+                <label for="location">Location</label>
+                <input type="text" id="Location" name="location" class="form-control" required placeholder="Enter your Location" onkeyup="fetchSuggestions()"> 
+                <ul id="suggestions" style="list-style: none; padding: 0; max-height: 150px; overflow-y: auto; border: 1px solid #ddd; position: absolute; background: white; width: 100%; z-index: 1000;"></ul>
+            </div>
+            <div class="form-group">
+                <label for="profile-photo">Profile Photo</label>
+                <input type="file" name="profile_pic" class="form-control" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required placeholder="Enter your Password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Register <i class="fas fa-paper-plane"></i></button>
+            <p>Already having an account <a href="farmersignin.html">Login</a></p>
+        </form>
+        
+    </div>
+    <script>
+      async function fetchSuggestions() {
+      const query = document.getElementById('Location').value;
+      if (query.length < 3) return; // Wait for at least 3 characters
+      
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1&limit=5`);
+      const data = await response.json();
+      
+      const suggestions = document.getElementById('suggestions');
+      suggestions.innerHTML = ''; // Clear previous suggestions
+      
+      data.forEach(location => {
+        const li = document.createElement('li');
+        li.textContent = location.display_name;
+        li.style.cursor = 'pointer';
+        li.onclick = () => {
+            document.getElementById('Location').value = location.display_name;
+            suggestions.innerHTML = ''; // Clear suggestions
+        };
+        suggestions.appendChild(li);
+      });
+      }
+      </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooked Foods</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">
+            {% if search_query %}
+                Foods matching "{{ search_query }}"
+            {% else %}
+                Foods in {{ locality }}
+            {% endif %}
+        </h2>
+
+        <!-- Search Bar -->
+        <form method="GET" action="/cooked_foods" class="mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control" name="search" placeholder="Search foods or locations..." value="{{ search_query }}">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Foods List -->
+        {% if cooked_foods %}
+            <div class="row">
+                {% for food in cooked_foods %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ url_for('static', filename='uploads/' + food['image']) }}" alt="{{ food['food_name'] }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ food['food_name'] }}</h5>
+                                <p class="card-text text-muted">
+                                    <strong>Location:</strong> {{ food['employee_locality'] }}
+                                </p>
+                                <p class="card-text text-success"><strong>₹{{ food['price'] }}</strong></p>
+                                <form action="/add_cooked_to_cart" method="POST">
+                                    <input type="hidden" name="food_id" value="{{ food.id }}">
+                                    <button type="submit" class="btn btn-primary btn-block">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-warning">
+                No foods found in {{ locality }}. Showing foods from other locations.
+            </div>
+            <div class="alert alert-info">
+                Try searching for specific locations or food items using the search bar above.
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

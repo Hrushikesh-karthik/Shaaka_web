@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Crop</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Edit Crop</h2>
+        <form action="{{ url_for('edit_crop', crop_id=crop['id']) }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="crop_name">Crop Name:</label>
+                <input type="text" class="form-control" id="crop_name" name="crop_name" value="{{ crop['crop_name'] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity (Kg):</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ crop['quantity'] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="price_per_kg">Price per Kg (₹):</label>
+                <input type="number" class="form-control" id="price_per_kg" name="price_per_kg" value="{{ crop['price_per_kg'] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="offer">Offer (e.g., Bulk Discount):</label>
+                <input type="text" class="form-control" id="offer" name="offer" value="{{ crop['offer'] }}">
+            </div>
+            <div class="form-group">
+                <label for="offer_details">Offer Details:</label>
+                <input type="text" class="form-control" id="offer_details" name="offer_details" value="{{ crop['offer_details'] }}">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

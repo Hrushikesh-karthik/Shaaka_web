@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Farmer Market</a>
+        
+    </nav>
+    
+    <div class="container mt-5">
+        <h1>Welcome, Admin!</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Recipes</h5>
+                        <p class="card-text">{{ recipe_count }}</p>
+                        <a href="{{ url_for('add_recipe') }}" class="btn btn-primary">Add Recipe</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title
+                        ">Total Customers</h5>
+                        <p class="card-text">{{ customer_count }}</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title
+                        ">Total Farmers</h5>
+                        <p class="card-text">{{ farmer_count }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <form action="{{ url_for('upload_recipes') }}" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="csv_file">Select CSV File</label>
+            <input type="file" class="form-control" id="csv_file" name="csv_file" accept=".csv" required>
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Upload Recipes</button>
+    </form>
+    
+</body>
+</html>

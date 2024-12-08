@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Summary</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .payment-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .secure-icon {
+            display: block;
+            margin: 0 auto;
+            width: 50px;
+            height: 50px;
+        }
+        .info-text {
+            margin-top: 15px;
+            font-size: 16px;
+            text-align: center;
+            color: #6c757d;
+        }
+        .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #343a40;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .btn-pay {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-pay:hover {
+            background-color: #218838;
+        }
+        .secure-message {
+            font-size: 14px;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828874.png" alt="Secure Payment" class="secure-icon">
+        <p class="info-text">You're just one step away from completing your purchase!</p>
+        <p class="info-text">Review your payment summary below and click "Proceed to Pay" to securely complete the transaction.</p>
+        <p class="total-amount">Your Total: ₹{{ grand_total }}</p>
+        <form action="{{ url_for('proceed_to_pay') }}" method="POST">
+            <button type="submit" class="btn-pay">Proceed to Pay</button>
+        </form>
+        <p class="secure-message">All transactions are secure and encrypted.</p>
+    </div>
+</body>
+</html>

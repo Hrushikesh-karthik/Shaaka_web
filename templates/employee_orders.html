@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Orders</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Pending Orders</h2>
+        {% if pending_orders %}
+            <div class="row">
+                {% for order in pending_orders %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ url_for('static', filename='uploads/' + order.image) }}" class="card-img-top" alt="{{ order.food_name }}" height="200px" width="200px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ order.food_name }}</h5>
+                                <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+                                <p><strong>Total Cost:</strong> ₹{{ order.total_cost }}</p>
+                                <p><strong>Ordered Time:</strong> {{ order.ordered_time }}</p>
+                                <p><strong>Address:</strong> {{ order.address }}</p>
+                                <a href="{{ url_for('mark_as_delivered', order_id=order.order_id) }}" class="btn btn-primary">Update Status</a>
+                                <span class="badge badge-warning">{{ order.status }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No pending orders available.</p>
+        {% endif %}
+
+        <h2>Delivered Orders</h2>
+        {% if delivered_orders %}
+            <div class="row">
+                {% for order in delivered_orders %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ url_for('static', filename='uploads/' + order.image) }}" class="card-img-top" alt="{{ order.food_name }}" height="200px" width="200px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ order.food_name }}</h5>
+                                <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+                                <p><strong>Total Cost:</strong> ₹{{ order.total_cost }}</p>
+                                <p><strong>Ordered Time:</strong> {{ order.ordered_time }}</p>
+                                <p><strong>Address:</strong> {{ order.address }}</p>
+                                <span class="badge badge-success">{{ order.status }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No delivered orders available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

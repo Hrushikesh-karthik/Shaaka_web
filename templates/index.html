@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Shaaka</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{{ url_for('static', filename='shaaka.png') }}" rel="icon">
+  <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+</head>
+
+<body class="index-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="{{ url_for('home') }}" class="logo d-flex align-items-center">
+        <h1 style="color: rgb(41, 212, 70);" class="sitename">SHAAKA</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+          <li><a href="{{ url_for('farmer') }}">Farmer</a></li>
+          <li><a href="{{ url_for('employee_register') }}">Employee</a></li>
+          <li><a href="{{ url_for('hunger') }}">Hunger-free</a></li>
+          <li><a href="#contact">Jobs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+      <img src="{{ url_for('static', filename='img/mainbg.jpg') }}" class="hero-bg" alt="" data-aos="fade-in">
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <h2>Where Sustainability Meets Empowerment</h2>
+        <p>We <span class="typed" data-typed-items="Empower Farmers, Support Homemakers, Fight Food Waste, Feed the Needy, Deliver Fresh Organic Produce, Drive Zero Hunger, Create Opportunities, Transform Lives"></span></p>
+        <div>
+          <a href="#about" class="cta-btn">Dive into change</a>
+          <a href="{{ url_for('customer_register') }}" class="cta-btn2">Be a part of us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Empowering Organic Farmers</h2>
+        <p>Welcome to Shaaka, where we bridge the gap between organic farmers and customers, creating a sustainable platform for healthy living. At Shaaka, we are committed to supporting local farmers and promoting fresh, organic produce. By enabling farmers to sell their fruits and vegetables directly to customers, we ensure fair prices for farmers and high-quality goods for consumers.</p>
+      </div>
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
+            <img src="{{ url_for('static', filename='img/about.jpg') }}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
+            <h3>What we do</h3>
+            <p>Connecting Farmers and Customers. Transforming Lives. <br>
+
+              Shaaka is dedicated to revolutionizing the agricultural market by empowering organic farmers. Our platform allows farmers to showcase their fresh produce, connect directly with customers, and grow their businesses sustainably. Together, we are making organic farming profitable and accessible for everyone.
+              
+              </p>
+              <ul>
+                <li><i class="bi bi-check-circle"></i> <span>Direct Access to Customers <br>
+                  Farmers can list their produce on Shaaka, reaching customers who value fresh, organic fruits and vegetables.</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Fair Pricing Model <br>
+                  We ensure farmers receive fair compensation, eliminating middlemen and maximizing profits.
+                  </span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Sustainability Support <br>
+                  Shaaka provides tools and resources to help farmers adopt sustainable practices, improving yield and reducing environmental impact.</span></li>
+                  <li><i class="bi bi-check-circle"></i> <span>Easy-to-Use Platform <br>
+                    Our farmer-friendly interface makes it simple to upload produce details, manage inventory, and track sales.</span></li>
+              </ul>
+            <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="features" class="features section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Our Pillars of Impact</h2>
+        <p>At Shaaka, we are dedicated to providing innovative, high-quality services that empower our clients to achieve their goals and stay ahead in an ever-evolving landscape.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="feature-box orange">
+              <i class="bi bi-award"></i>
+              <h4>Empowering Homemakers</h4>
+              <p>Transforming agriculture with advanced technologies to enhance productivity, efficiency, and
+                sustainability in farming practices.
+
+              </p>
+            </div>
+          </div><!-- End Feature Borx-->
+
+          <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="feature-box blue">
+              <i class="bi bi-patch-check"></i>
+              <h4>Zero Hunger Initiative</h4>
+              <p>Supporting the global fight against hunger by promoting innovative agricultural practices, reducing food waste, and ensuring accessibility to nutritious food for all.</p>
+            </div>
+          </div><!-- End Feature Borx-->
+
+          <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="feature-box green">
+              <i class="bi bi-sunrise"></i>
+              <h4>Renewable Food Systems</h4>
+              <p>Driving a future where food production relies on renewable resources, sustainable farming, and eco-friendly technologies for a healthier planet.</p>
+            </div>
+          </div><!-- End Feature Borx-->
+
+          <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="feature-box red">
+              <i class="bi bi-shield-check"></i>
+              <h4>Community-Centric Biotech</h4>
+              <p>Pioneering affordable biotech solutions to address critical challenges in food security, healthcare, and environmental sustainability, all tailored to uplift local communities.</p>
+            </div>
+          </div><!-- End Feature Borx-->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Features Section -->
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+      <img src="static/img/homebg.png" alt="">
+
+      <div class="container">
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-9 text-center text-xl-start">
+            <h3>Join the Zero Hunger Revolution</h3>
+            <p>Be part of the solution—empower communities, reduce food waste, and champion sustainable agriculture. Every small step leads to a big impact.</p>
+          </div>
+          <div class="col-xl-3 cta-btn-container text-center">
+            <a class="cta-btn align-middle" href="hunger.html">Want to make a difference?</a>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Call To Action Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Empowering Employees</h2>
+        <p>Here at Shaaka, where busy professionals can rely on us to meet their grocery needs while supporting sustainability. At Shaaka, we understand the time constraints employees face, and our platform ensures quick and seamless access to fresh, organic produce delivered to your doorstep.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
+            <img src="static/img/about2.jpeg" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
+            <h3>What We Offer to Employees</h3>
+            <p class="fst-italic">
+              Helping Employees Balance Health and Work. <br>
+
+              Shaaka is here to support employees in achieving a healthy lifestyle despite busy schedules. Our platform connects professionals directly with farmers, offering a hassle-free way to buy organic fruits and vegetables. Together, we can build a healthier, more sustainable world.
+              
+            </p>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> <span> Convenient Online Platform <br>
+                Order fresh produce anytime, anywhere, with just a few clicks.</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Quick Delivery Service <br>
+                Get farm-fresh groceries delivered to your home or office.
+                </span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Affordable and Sustainable<br>
+                Enjoy organic produce at fair prices while supporting local farmers.</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Healthy Lifestyle Support<br>
+                  Access fresh, nutritious food that fuels your productivity and well-being.</span></li>
+            </ul>
+            <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>For inquiries, please contact us at:</p>
+      </div>
+      <div class="container" data-aos="fade" data-aos-delay="100">
+        <div class="row gy-4">
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Address</h3>
+                <p>Malla Reddy College, Maisamaguda, Hyderabad</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <form action="#" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                </div>
+                <div class="col-md-12 text-center">
+                  <button type="submit">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div class="address">
+            <h4>Address</h4>
+            <p>Malla Reddy College</p>
+            <p>Maisammaguda, Hyderabad</p>
+            <p></p>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Contact</h4>
+            <p>
+              <strong>Phone:</strong> <span>+91 123456789</span><br>
+              <strong>Email:</strong> <span>info@shaaka.com</span><br>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Working Hours</h4>
+            <p>
+              <strong>Mon-Fri:</strong> <span>11AM - 06PM</span><br>
+              <strong>Saturday, Sunday</strong>: <span>10AM - 05PM</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4>Follow Us</h4>
+          <div class="social-links d-flex">
+            <a href="https://x.com/?lang=en&mx=2" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.facebook.com/" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/accounts/login/" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/mynetwork/grow/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Shaaka</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+  
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i>
+ <!-- Preloader -->
+ <div id="preloader"></div>
+  <!-- Vendor JS Files -->
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/typed.js/typed.umd.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

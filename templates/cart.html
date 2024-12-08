@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Your Cart</h2>
+
+        <!-- Display Crop Details in Cart -->
+        <form method="POST" action="/update_cart/{{ crop.id }}">
+            <div class="card mb-4">
+                <img src="/static/uploads/{{ crop.image }}" class="card-img-top" alt="{{ crop.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ crop.name }}</h5>
+                    <p class="card-text">
+                        <i class="bi bi-geo-alt"></i> {{ crop.location }}<br>
+                        <strong>₹{{ crop.price_per_kg }}/kg</strong><br>
+                        {% if crop.offer %}
+                        <span class="badge bg-success">Offer: {{ crop.offer_details }}</span>
+                        {% endif %}
+                    </p>
+
+                    <!-- Quantity Selection -->
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-secondary" onclick="decreaseQuantity()">-</button>
+                        <input type="number" name="quantity" id="quantity" class="form-control w-25" value="1" min="1">
+                        <button type="button" class="btn btn-outline-secondary" onclick="increaseQuantity()">+</button>
+                    </div>
+
+                    <p class="mt-3">Total Price: ₹<span id="total_price">{{ crop.price_per_kg }}</span></p>
+
+                    <button type="submit" class="btn btn-primary">Update Cart</button>
+                </div>
+            </div>
+        </form>
+
+        <form method="POST" action="/checkout">
+            <button type="submit" class="btn btn-success mt-4">Proceed to Pay</button>
+        </form>
+    </div>
+
+    <script>
+        // Adjust total price on quantity change
+        function updatePrice() {
+            let quantity = document.getElementById('quantity').value;
+            let pricePerKg = {{ crop.price_per_kg }};
+            let totalPrice = quantity * pricePerKg;
+            document.getElementById('total_price').textContent = totalPrice;
+        }
+
+        function increaseQuantity() {
+            let quantity = document.getElementById('quantity');
+            quantity.value = parseInt(quantity.value) + 1;
+            updatePrice();
+        }
+
+        function decreaseQuantity() {
+            let quantity = document.getElementById('quantity');
+            if (quantity.value > 1) {
+                quantity.value = parseInt(quantity.value) - 1;
+                updatePrice();
+            }
+        }
+
+        // Initialize price on page load
+        updatePrice();
+    </script>
+</body>
+</html>

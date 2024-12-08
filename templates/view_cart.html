@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f9f4e8;
+            background-image: url('{{ url_for('static', filename='img/organic_bg.jpg') }}');
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 90%;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.4rem;
+                text-align: center;
+            }
+
+            .btn {
+                font-size: 0.85rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Your Cart</h2>
+
+        <!-- Crops Cart -->
+        {% if crops_cart %}
+            <h3>Crops</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Crop</th>
+                            <th>Image</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Cost</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in crops_cart %}
+                            <tr>
+                                <td>{{ item.crop_name }}</td>
+                                <td><img src="{{ url_for('static', filename='uploads/' + item.image) }}" alt="{{ item.crop_name }}" width="50"></td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('update_crop_quantity') }}" class="d-flex align-items-center">
+                                        <input type="hidden" name="cart_id" value="{{ item.id }}">
+                                        <button name="action" value="decrease" class="btn btn-sm btn-warning mr-2">-</button>
+                                        <span>{{ item.quantity }}</span>
+                                        <button name="action" value="increase" class="btn btn-sm btn-success ml-2">+</button>
+                                    </form>
+                                </td>
+                                <td>₹{{ item.price }}</td>
+                                <td>₹{{ item.total_cost }}</td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('delete_crop_cart') }}">
+                                        <input type="hidden" name="cart_id" value="{{ item.id }}">
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+               
+            </div>
+        {% endif %}
+
+        <!-- Recipes Cart -->
+        {% if recipes_cart %}
+            <h3>Buy Ingredients</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Recipe</th>
+                            <th>Image</th>
+                            <th>Quantity</th>
+                            <th>Masala Cost</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in recipes_cart %}
+                            <tr>
+                                <td>{{ item.recipe_name }} Masala</td>
+                                <td><img src="{{ url_for('static', filename='uploads/' + item.image) }}" alt="{{ item.recipe_name }}" width="50"></td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('update_recipe_quantity') }}" class="d-flex align-items-center">
+                                        <input type="hidden" name="cart_id" value="{{ item.id }}">
+                                        <button name="action" value="decrease" class="btn btn-sm btn-warning mr-2">-</button>
+                                        <span>{{ item.quantity }}</span>
+                                        <button name="action" value="increase" class="btn btn-sm btn-success ml-2">+</button>
+                                    </form>
+                                </td>
+                                <td>₹{{ item.total_cost }}</td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('delete_recipe') }}">
+                                        <input type="hidden" name="cart_id" value="{{ item.id }}">
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        <h3 class="text-right">Grand Total: ₹{{ grand_total }}</h3>
+        <a href="{{ url_for('proceed_to_pay') }}" class="btn btn-success btn-lg btn-block mt-3">Proceed to Pay</a>
+    </div>
+</body>
+</html>
